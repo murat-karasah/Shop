@@ -11,8 +11,8 @@ using Shop.API.Persistance.Context;
 namespace Shop.API.Persistance.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20220422165341_TestsDb")]
-    partial class TestsDb
+    [Migration("20220422214753_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

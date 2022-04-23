@@ -38,13 +38,13 @@ namespace Shop.API.Persistance.Repositories
         public async Task RemoveAsync(T entity)
         {
             this.shopContext.Set<T>().Remove(entity);
-            await this.shopContext.Set<T>().SingleAsync();
+            await this.shopContext.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)
         {
             this.shopContext.Set<T>().Update(entity);
-            await this.shopContext.Set<T>().SingleAsync();
+            await this.shopContext.SaveChangesAsync();
         }
     }
 }

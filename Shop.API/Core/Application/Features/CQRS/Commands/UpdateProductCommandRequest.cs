@@ -1,6 +1,8 @@
-﻿namespace Shop.API.Core.Application.Dto
+﻿using MediatR;
+
+namespace Shop.API.Core.Application.Features.CQRS.Commands
 {
-    public class ProductListDto
+    public class UpdateProductCommandRequest : IRequest
     {
         public int Id { get; set; }
         public string? Name { get; set; }

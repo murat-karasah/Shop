@@ -4,7 +4,7 @@
 
 namespace Shop.API.Persistance.Migrations
 {
-    public partial class TestsDb : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

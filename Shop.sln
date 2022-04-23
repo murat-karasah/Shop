@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.API", "Shop.API\Shop.API.csproj", "{B2FE06D4-CDC3-4597-9D91-A1D59B1151C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.API", "Shop.API\Shop.API.csproj", "{B2FE06D4-CDC3-4597-9D91-A1D59B1151C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.UI", "Shop.UI\Shop.UI.csproj", "{B4CA688A-BB2A-432A-9604-4BE3688C88BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B2FE06D4-CDC3-4597-9D91-A1D59B1151C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2FE06D4-CDC3-4597-9D91-A1D59B1151C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2FE06D4-CDC3-4597-9D91-A1D59B1151C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4CA688A-BB2A-432A-9604-4BE3688C88BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4CA688A-BB2A-432A-9604-4BE3688C88BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4CA688A-BB2A-432A-9604-4BE3688C88BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4CA688A-BB2A-432A-9604-4BE3688C88BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
