@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<Shop.UI.Models.ProductModel>
+@{
+    ViewData["Title"] = "Shop";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Ürünler</h1>
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+             <div class="col-sm-4">
+                <h3>
+                    @Html.ActionLink("Ürün", "Detail", "Product", new { id =@item.Id }, null)
+ 
+                </h3>
+                <span>@item.Price</span>
+
+            </div>
+        }
+
+
+           
+          
+    </div>
+
 </div>

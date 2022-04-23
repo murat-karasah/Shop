@@ -29,6 +29,8 @@ builder.Services.AddAutoMapper(opt =>
 {
     opt.AddProfiles(new List<Profile>()
     {
+        new CartProfile(),
+        new OrderProfile(),
         new ProductProfile(),
         new CategoryProfile()
     });

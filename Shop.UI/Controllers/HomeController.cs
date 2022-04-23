@@ -1,21 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.UI.Models;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Shop.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IHttpClientFactory httpClientFactory)
         {
-            _logger = logger;
+            _httpClientFactory = httpClientFactory;
         }
 
-        public IActionResult Index()
+      
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync("https://localhost:7233/api/Products");
+            if (response.IsSuccessStatusCode)
+            {
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                };
+
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var list = System.Text.Json.JsonSerializer.Deserialize<List<ProductModel>>(jsonString, options);
+                return View(list);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult Privacy()

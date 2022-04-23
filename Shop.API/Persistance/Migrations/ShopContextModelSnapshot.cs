@@ -61,6 +61,32 @@ namespace Shop.API.Persistance.Migrations
                     b.ToTable("AppUsers");
                 });
 
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("Shop.API.Core.Domain.Entity.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -75,6 +101,27 @@ namespace Shop.API.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AppUserID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("PaymentStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserID");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Shop.API.Core.Domain.Entity.Product", b =>
@@ -115,6 +162,36 @@ namespace Shop.API.Persistance.Migrations
                     b.Navigation("AppRole");
                 });
 
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.Cart", b =>
+                {
+                    b.HasOne("Shop.API.Core.Domain.Entity.Order", "Order")
+                        .WithMany("Carts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Shop.API.Core.Domain.Entity.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.Order", b =>
+                {
+                    b.HasOne("Shop.API.Core.Domain.Entity.AppUser", "AppUser")
+                        .WithMany("Orders")
+                        .HasForeignKey("AppUserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Shop.API.Core.Domain.Entity.Product", b =>
                 {
                     b.HasOne("Shop.API.Core.Domain.Entity.Category", "Category")
@@ -131,9 +208,19 @@ namespace Shop.API.Persistance.Migrations
                     b.Navigation("AppUsers");
                 });
 
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.AppUser", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("Shop.API.Core.Domain.Entity.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Shop.API.Core.Domain.Entity.Order", b =>
+                {
+                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

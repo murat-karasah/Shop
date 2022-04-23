@@ -21,7 +21,7 @@ namespace Shop.API.Core.Application.Features.CQRS.Handlers
             {
                 UserName = request.UserName,
                 Password=request.Password,
-                AppRoleId=(int)RoleType.Member
+                AppRoleId=2
             });
             return Unit.Value;
         }
