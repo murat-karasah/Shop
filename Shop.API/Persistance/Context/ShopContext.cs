@@ -22,6 +22,8 @@ namespace Shop.API.Persistance.Context
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new CartItemConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
               base.OnModelCreating(modelBuilder);
         }
        

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Shop.UI.Models;
@@ -22,6 +23,14 @@ namespace Shop.UI.Controllers
         {
             return View();
         }
+        [HttpGet]
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(JwtBearerDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Home");
+        }
+
         [HttpPost]
         public async Task<IActionResult> SignInAsync(UserLoginModel model)
         {
@@ -42,9 +51,13 @@ namespace Shop.UI.Controllers
                     ClaimsIdentity identiy = new ClaimsIdentity(token.Claims, JwtBearerDefaults.AuthenticationScheme);
                     var authProps = new AuthenticationProperties
                     {
+                        
                         IsPersistent = true,
                     };
+ 
                     await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(identiy), authProps);
+                    var orderResponse = await client.PostAsync("https://localhost:7233/api/Auth/SignIn", requesContent);
+
                     return RedirectToAction("Index", "Home");
                 }
                 return RedirectToAction("Index", "Home");

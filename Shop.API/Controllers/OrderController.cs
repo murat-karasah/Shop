@@ -17,7 +17,7 @@ namespace Shop.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public async Task<IActionResult> Create(CreateOrderCommandRequest request,int id)
         {
             request.AppUserID= id;

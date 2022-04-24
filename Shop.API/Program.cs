@@ -32,7 +32,8 @@ builder.Services.AddAutoMapper(opt =>
         new CartProfile(),
         new OrderProfile(),
         new ProductProfile(),
-        new CategoryProfile()
+        new CategoryProfile(),
+        new CartItemProfile()
     });
 });
 builder.Services.AddCors(opt =>

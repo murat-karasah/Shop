@@ -1,4 +1,17 @@
 ﻿@model Shop.UI.Models.ProductModel
 
 
-@Model.Name
+<div>
+    <h3>@Model.Name</h3>
+    <span>Fiyat : @Model.Price Tl</span>
+    <span>Stok : @Model.Stock</span>
+      @if (User.IsInRole("Member"))
+        {
+                            @Html.ActionLink("Sepete Ekle", "AddCart","Cart", new { productId =@Model.Id,amount=1})
+
+        }
+        else
+        {
+            <span>Sepete eklemek için giriş yapınız!</span>
+        }
+</div>

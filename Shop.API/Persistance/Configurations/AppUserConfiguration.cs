@@ -28,6 +28,20 @@ namespace Shop.API.Persistance.Configurations
             builder.HasOne(x => x.AppUser).WithMany(x => x.Orders).HasForeignKey(x => x.AppUserID);
         }
     }
-    
+    public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
+    {
+        public void Configure(EntityTypeBuilder<CartItem> builder)
+        {
+            builder.HasOne(x => x.Cart).WithMany(x => x.CartItems).HasForeignKey(x => x.CartId);
+        }
+    }
+
+    public class OrderItemConfiguration : IEntityTypeConfiguration<Order>
+    {
+        public void Configure(EntityTypeBuilder<Order> builder)
+        {
+            builder.HasOne(x => x.Cart).WithOne(x => x.Order).HasForeignKey<Cart>(x => x.OrderId);
+        }
+    }
 
 }

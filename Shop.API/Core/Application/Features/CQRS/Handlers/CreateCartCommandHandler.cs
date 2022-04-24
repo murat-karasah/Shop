@@ -18,9 +18,10 @@ namespace Shop.API.Core.Application.Features.CQRS.Handlers
         {
             await this.repository.CreateAsync(new Cart
             {
-                Amount=request.Amount,
-                OrderId=request.OrderId,
-                
+                AppUserID=request.AppUserID,
+                Status=false,
+                OrderId=request.OrderId
+               
             });
             return Unit.Value;
         }
