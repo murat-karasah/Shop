@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shop.UI.Models;
 using System.Diagnostics;
 using System.Text.Json;
 
 namespace Shop.UI.Controllers
 {
+    
+
     public class HomeController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

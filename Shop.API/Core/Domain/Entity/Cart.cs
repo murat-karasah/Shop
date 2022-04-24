@@ -13,11 +13,7 @@ namespace Shop.API.Core.Domain.Entity
         [ForeignKey("OrderId")]
         public int OrderId { get; set; }
         public Order Order{ get; set; }
-        public Cart()
-        {
-            Product = new Product();
-            Order = new Order();
-        }
+        
 
     }
 }

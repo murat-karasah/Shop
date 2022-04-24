@@ -12,7 +12,7 @@
         public Order()
         {
             Carts = new List<Cart>();
-            AppUser = new AppUser();
+            
             PaymentStatus = false;
         }
     }

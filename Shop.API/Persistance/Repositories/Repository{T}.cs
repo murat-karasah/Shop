@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.API.Core.Interface;
 using Shop.API.Persistance.Context;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Shop.API.Persistance.Repositories
@@ -23,6 +24,12 @@ namespace Shop.API.Persistance.Repositories
         public async Task<List<T>> GetAllAsync()
         {
             return await this.shopContext.Set<T>().AsNoTracking().ToListAsync();
+        }
+
+        public async Task<T?> GetAllByFilter(object id)
+        {
+            return await this.shopContext.Set<T>().FindAsync(id);
+
         }
 
         public async Task<T?> GetByFilter(Expression<Func<T, bool>> filter)
