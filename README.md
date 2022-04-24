@@ -6,7 +6,7 @@ Database ConnectionStrings
 Shop.API/appsettings.json
 
 "ConnectionStrings": {
-    "Local": "server=<YourDbServerName>;Database=ShopDb;integrated security = true;"
+    "Local": "server=YourDbServerName;Database=ShopDb;integrated security = true;"
   },
 
 Shop.Apı Set as Startup Project
