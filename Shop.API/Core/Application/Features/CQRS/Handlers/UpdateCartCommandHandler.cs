@@ -20,7 +20,6 @@ namespace Shop.API.Core.Application.Features.CQRS.Handlers
             if (update != null)
             {
                 update.Status = request.Status;
-                update.OrderId = request.OrderId;
                 await this.repository.UpdateAsync(update);
 
             }

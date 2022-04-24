@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.API.Core.Application.Features.CQRS.Commands;
 using Shop.API.Core.Application.Features.CQRS.Queries;
 using Shop.API.Infrastructure.Tools;
+using System.Dynamic;
 
 namespace Shop.API.Controllers
 {

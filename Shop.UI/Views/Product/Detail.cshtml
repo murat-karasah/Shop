@@ -7,8 +7,7 @@
     <span>Stok : @Model.Stock</span>
       @if (User.IsInRole("Member"))
         {
-                            @Html.ActionLink("Sepete Ekle", "AddCart","Cart", new { productId =@Model.Id,amount=1})
-
+            @Html.ActionLink("Sepete Ekle", "AddCartItem","Cart", new { id=@Model.Id,amount=1,price=@Model.Price})
         }
         else
         {

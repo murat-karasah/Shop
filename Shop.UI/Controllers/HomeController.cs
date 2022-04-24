@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shop.UI.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 using System.Text.Json;
 
 namespace Shop.UI.Controllers
@@ -21,6 +22,8 @@ namespace Shop.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
+
+             
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetAsync("https://localhost:7233/api/Products");
             if (response.IsSuccessStatusCode)

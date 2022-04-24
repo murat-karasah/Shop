@@ -19,9 +19,7 @@ namespace Shop.API.Core.Application.Features.CQRS.Handlers
             await this.repository.CreateAsync(new Cart
             {
                 AppUserID=request.AppUserID,
-                Status=false,
-                OrderId=request.OrderId
-               
+                Status=false               
             });
             return Unit.Value;
         }

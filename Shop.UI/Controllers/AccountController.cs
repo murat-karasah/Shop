@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Shop.UI.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -40,6 +41,7 @@ namespace Shop.UI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var jsonData = await response.Content.ReadAsStringAsync();
+
                 var tokenModel = JsonSerializer.Deserialize<JwtResponseModel>(jsonData, new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -54,13 +56,13 @@ namespace Shop.UI.Controllers
                         
                         IsPersistent = true,
                     };
- 
-                    await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(identiy), authProps);
-                    var orderResponse = await client.PostAsync("https://localhost:7233/api/Auth/SignIn", requesContent);
+                     await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(identiy), authProps);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("AddCart", "Cart");
+
                 }
                 return RedirectToAction("Index", "Home");
+
 
             }
             else

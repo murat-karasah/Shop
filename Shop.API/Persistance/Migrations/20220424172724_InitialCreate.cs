@@ -78,36 +78,12 @@ namespace Shop.API.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AppUserID = table.Column<int>(type: "int", nullable: false),
-                    CartID = table.Column<int>(type: "int", nullable: true),
-                    PaymentStatus = table.Column<bool>(type: "bit", nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
-                    total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_AppUsers_AppUserID",
-                        column: x => x.AppUserID,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Carts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppUserID = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -119,11 +95,6 @@ namespace Shop.API.Persistance.Migrations
                         principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Carts_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -154,6 +125,31 @@ namespace Shop.API.Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "Definition" },
+                values: new object[] { 1, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "Definition" },
+                values: new object[] { 2, "Member" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Definition" },
+                values: new object[] { 1, "Telefon" });
+
+            migrationBuilder.InsertData(
+                table: "AppUsers",
+                columns: new[] { "Id", "AppRoleId", "Password", "UserName" },
+                values: new object[] { 1, 2, "kullanici", "kullanici" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Name", "Price", "Stock" },
+                values: new object[] { 1, 1, "Iphone 13", 1500m, 100 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AppUsers_AppRoleId",
                 table: "AppUsers",
@@ -175,18 +171,6 @@ namespace Shop.API.Persistance.Migrations
                 column: "AppUserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Carts_OrderId",
-                table: "Carts",
-                column: "OrderId",
-                unique: true,
-                filter: "[OrderId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_AppUserID",
-                table: "Orders",
-                column: "AppUserID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -204,13 +188,10 @@ namespace Shop.API.Persistance.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "AppUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "AppUsers");
 
             migrationBuilder.DropTable(
                 name: "AppRoles");

@@ -11,7 +11,7 @@
         {
              <div class="col-sm-4">
                 <h3>
-                    @Html.ActionLink("Ürün", "Detail", "Product", new { id =@item.Id }, null)
+                    @Html.ActionLink(@item.Name, "Detail", "Product", new { id =@item.Id }, null)
  
                 </h3>
                 <span>@item.Price</span>

@@ -23,9 +23,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        
                     </ul>
                 </div>
 
@@ -36,8 +34,12 @@
                             @if(User.IsInRole("Member"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sepet</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="PastCart">Geçmiş Siparişler</a>
                                  </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="AllListCart">Sepet</a>
+                                 </li>
+
                                  <li class="nav-item">
 
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>

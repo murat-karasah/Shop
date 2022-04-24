@@ -36,7 +36,12 @@ namespace Shop.API.Controllers
             await this.mediator.Send(new DeleteCartCommandRequest(id));
             return NoContent();
         }
-         
-       
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateCartCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
     }
 }

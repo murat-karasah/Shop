@@ -1,0 +1,46 @@
+﻿
+@model dynamic
+
+
+    @if(Model.Cart==null)
+    {
+    <h3>Sepetiniz Boş</h3>
+}
+else
+{
+    if (Model.CartItem.Count!=0)
+    {
+           <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Ürün Id</th>
+      <th scope="col">Fiyat</th>
+      <th scope="col">Miktar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @foreach (var item in Model.CartItem)
+    {
+      <tr>
+      <td>@item.ProductId</td>
+      <td>@item.ProducPrice</td>
+      <td>@item.ProducAmount</td>
+     </tr>
+    }
+     
+  </tbody>
+        </table>
+
+@Html.ActionLink("Ödeme Yap", "UpdateCart","Cart", new {id=@Model.Cart.Id })
+    }
+    else
+    {
+        
+     <h3>Sepetiniz Boş</h3>
+
+    }
+   
+
+
+}

@@ -1,0 +1,41 @@
+﻿
+@model dynamic
+
+
+    @if(Model.Cart==null)
+    {
+    <h3>Geçmiş Ödemeniz Yok</h3>
+}
+else
+{
+    if(Model.CartItem!=null)
+    {
+        @foreach (var item in Model.CartItem)
+    {
+        <h3>@item.CartId Nolu Faturanız</h3>
+         <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Ürün Id</th>
+      <th scope="col">Fiyat</th>
+      <th scope="col">Miktar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+      <td>@item.ProductId</td>
+      <td>@item.ProducPrice</td>
+      <td>@item.ProducAmount</td>
+     </tr>
+    
+     
+  </tbody>
+        </table>
+}
+    }
+   
+
+
+}

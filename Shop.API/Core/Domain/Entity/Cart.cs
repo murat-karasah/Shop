@@ -7,8 +7,6 @@ namespace Shop.API.Core.Domain.Entity
         public int Id { get; set; }
         public int AppUserID { get; set; }
         public AppUser AppUser { get; set; }
-        public int? OrderId { get; set; }
-        public Order Order { get; set; }
         public bool Status { get; set; }
         public List<CartItem> CartItems { get; set; }
 

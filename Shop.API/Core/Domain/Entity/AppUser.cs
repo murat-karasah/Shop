@@ -9,12 +9,6 @@
         public int AppRoleId { get; set; }
         public AppRole AppRole{ get; set; }
 
-        public List<Order> Orders { get; set; }
-
-        public AppUser()
-        {
-            Orders = new List<Order>();
-        }
 
 
     }
